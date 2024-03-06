@@ -15,18 +15,7 @@ if (isset($_GET['delete'])) {
 ?>
 
 <body>
-	<div class="pre-loader">
-		<div class="pre-loader-box">
-			<div class="loader-logo"><img src="../vendors/images/deskapp-logo-svg.png" alt=""></div>
-			<div class='loader-progress' id="progress_div">
-				<div class='bar' id='bar1'></div>
-			</div>
-			<div class='percent' id='percent1'>0%</div>
-			<div class="loading-text">
-				Loading...
-			</div>
-		</div>
-	</div>
+	<?php include('includes/pre-loader.php')?>
 
 	<?php include('includes/navbar.php')?>
 
@@ -132,9 +121,9 @@ if (isset($_GET['delete'])) {
 						<thead>
 							<tr>
 								<th class="table-plus">FULL NAME</th>
+								<th>STUDENT ID</th>
 								<th>EMAIL</th>
 								<th>DEPARTMENT</th>
-								<th>POSITION</th>
 								<th>AVE. LEAVE</th>
 								<th class="datatable-nosort">ACTION</th>
 							</tr>
@@ -158,9 +147,9 @@ if (isset($_GET['delete'])) {
 										</div>
 									</div>
 								</td>
+								<td><?php echo $row['Student_ID']; ?></td>
 								<td><?php echo $row['EmailId']; ?></td>
 	                            <td><?php echo $row['DepartmentName']; ?></td>
-								<td><?php echo $row['Position_Student']; ?></td>
 								<td><?php echo $row['Av_leave']; ?></td>
 								<td>
 									<div class="dropdown">

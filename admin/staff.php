@@ -15,18 +15,7 @@ if (isset($_GET['delete'])) {
 ?>
 
 <body>
-	<div class="pre-loader">
-		<div class="pre-loader-box">
-			<div class="loader-logo"><img src="../vendors/images/deskapp-logo-svg.png" alt=""></div>
-			<div class='loader-progress' id="progress_div">
-				<div class='bar' id='bar1'></div>
-			</div>
-			<div class='percent' id='percent1'>0%</div>
-			<div class="loading-text">
-				Loading...
-			</div>
-		</div>
-	</div>
+	<?php include('includes/pre-loader.php')?>
 
 	<?php include('includes/navbar.php')?>
 
@@ -46,7 +35,7 @@ if (isset($_GET['delete'])) {
 					<div class="card-box height-100-p widget-style3">
 
 						<?php
-						$sql = "SELECT emp_id from tblemployees";
+						$sql = "SELECT emp_id from tblemployees" ;
 						$query = $dbh -> prepare($sql);
 						$query->execute();
 						$results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -56,7 +45,7 @@ if (isset($_GET['delete'])) {
 						<div class="d-flex flex-wrap">
 							<div class="widget-data">
 								<div class="weight-700 font-24 text-dark"><?php echo($empcount);?></div>
-								<div class="font-14 text-secondary weight-500">Total Employees</div>
+								<div class="font-14 text-secondary weight-500">Total Members</div>
 							</div>
 							<div class="widget-icon">
 								<div class="icon" data-color="#00eccf"><i class="icon-copy dw dw-user-2"></i></div>
@@ -68,14 +57,14 @@ if (isset($_GET['delete'])) {
 					<div class="card-box height-100-p widget-style3">
 
 						<?php 
-						 $query_reg_staff = mysqli_query($conn,"select * from tblemployees where role = 'Staff' ")or die(mysqli_error());
-						 $count_reg_staff = mysqli_num_rows($query_reg_staff);
+						 $query_reg_student = mysqli_query($conn,"select * from tblstudents where role = 'Student' ")or die(mysqli_error());
+						 $count_reg_student = mysqli_num_rows($query_reg_student);
 						 ?>
 
 						<div class="d-flex flex-wrap">
 							<div class="widget-data">
-								<div class="weight-700 font-24 text-dark"><?php echo htmlentities($count_reg_staff); ?></div>
-								<div class="font-14 text-secondary weight-500">Staffs</div>
+								<div class="weight-700 font-24 text-dark"><?php echo htmlentities($count_reg_student); ?></div>
+								<div class="font-14 text-secondary weight-500">Total Students</div>
 							</div>
 							<div class="widget-icon">
 								<div class="icon" data-color="#09cc06"><span class="icon-copy fa fa-hourglass"></span></div>
@@ -106,14 +95,14 @@ if (isset($_GET['delete'])) {
 					<div class="card-box height-100-p widget-style3">
 
 						<?php 
-						 $query_reg_admin = mysqli_query($conn,"select * from tblemployees where role = '$session_role' ")or die(mysqli_error());
-						 $count_reg_admin = mysqli_num_rows($query_reg_admin);
+						 $query_reg_staff = mysqli_query($conn,"select * from tblemployees where role = '$session_role' ")or die(mysqli_error());
+						 $count_reg_staff = mysqli_num_rows($query_reg_staff);
 						 ?>
 
 						<div class="d-flex flex-wrap">
 							<div class="widget-data">
-								<div class="weight-700 font-24 text-dark"><?php echo($count_reg_admin); ?></div>
-								<div class="font-14 text-secondary weight-500">Administrators</div>
+								<div class="weight-700 font-24 text-dark"><?php echo($count_reg_staff); ?></div>
+								<div class="font-14 text-secondary weight-500">Staff</div>
 							</div>
 							<div class="widget-icon">
 								<div class="icon" data-color="#ff5b5b"><i class="icon-copy fa fa-hourglass-o" aria-hidden="true"></i></div>

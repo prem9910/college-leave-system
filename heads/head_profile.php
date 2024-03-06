@@ -49,18 +49,7 @@ if (isset($_POST["update_image"])) {
 ?>
 
 <body>
-	<div class="pre-loader">
-		<div class="pre-loader-box">
-			<div class="loader-logo"><img src="../vendors/images/deskapp-logo-svg.png" alt=""></div>
-			<div class='loader-progress' id="progress_div">
-				<div class='bar' id='bar1'></div>
-			</div>
-			<div class='percent' id='percent1'>0%</div>
-			<div class="loading-text">
-				Loading...
-			</div>
-		</div>
-	</div>
+	<?php include('includes/pre-loader.php')?>
 
 	<?php include('includes/navbar.php')?>
 
@@ -137,9 +126,11 @@ if (isset($_POST["update_image"])) {
 									</li>
 									<li>
 										<span>My Role:</span>
-										<? $roles = $row['role']; ?>
-										<?php if($roles = 'HOD'): ?>
+										<?php $roles = $row['role']; ?>
+										<?php if($roles == 'HOD'): ?>
 										 <?php echo "Head of Department"; ?>
+										 <?php else :?>
+											<?php echo "Staff"; ?>
 										<?php endif ?>
 									</li>
 									<li>

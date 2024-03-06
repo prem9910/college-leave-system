@@ -32,18 +32,7 @@
 ?>
 
 <body>
-	<div class="pre-loader">
-		<div class="pre-loader-box">
-			<div class="loader-logo"><img src="../vendors/images/deskapp-logo-svg.png" alt=""></div>
-			<div class='loader-progress' id="progress_div">
-				<div class='bar' id='bar1'></div>
-			</div>
-			<div class='percent' id='percent1'>0%</div>
-			<div class="loading-text">
-				Loading...
-			</div>
-		</div>
-	</div>
+	<?php include('includes/pre-loader.php')?>
 
 	<?php include('includes/navbar.php')?>
 
@@ -200,7 +189,7 @@
 											<select name="user_role" class="custom-select form-control" required="true" autocomplete="off">
 												<option value="<?php echo $new_row['role']; ?>"><?php echo $new_row['role']; ?></option>
 												<option value="Admin">Admin</option>
-												<option value="Staff">Staff</option>
+												<option value="HOD">HOD</option>
 												<option value="Staff">Staff</option>
 											</select>
 										</div>

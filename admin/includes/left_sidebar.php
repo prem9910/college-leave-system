@@ -1,8 +1,8 @@
 <div class="left-side-bar">
 		<div class="brand-logo">
 			<a href="admin_dashboard.php">
-				<img src="../vendors/images/deskapp-logo-svg.png" alt="" class="dark-logo">
-				<img src="../vendors/images/deskapp-logo-white-svg.png" alt="" class="light-logo">
+				<img src="../vendors/images/deskapp-logo.svg" alt="" class="dark-logo">
+				<img src="../vendors/images/deskapp-logo-white.svg" alt="" class="light-logo">
 			</a>
 			<div class="close-sidebar" data-toggle="left-sidebar-close">
 				<i class="ion-close-round"></i>
@@ -44,7 +44,7 @@
 						</ul>
 					</li>
 					
-					<!-- <li class="dropdown">
+					<li class="dropdown">
 						<a href="javascript:;" class="dropdown-toggle">
 							<span class="micon dw dw-apartment"></span><span class="mtext"> Leave </span>
 						</a>
@@ -55,7 +55,7 @@
 							<li><a href="approved_leave.php">Approved Leave</a></li>
 							<li><a href="rejected_leave.php">Rejected Leave</a></li>
 						</ul>
-					</li> -->
+					</li>
 
 					<li>
 						<div class="dropdown-divider"></div>
