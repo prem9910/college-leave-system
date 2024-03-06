@@ -1,7 +1,7 @@
 <?php include('includes/header.php')?>
 <?php include('../includes/session.php')?>
 <?php
-	if(isset($_POST['add_student']))
+	if(isset($_POST['add_staff']))
 	{
 	
 	$fname=$_POST['firstname'];
@@ -15,8 +15,8 @@
 	$leave_days=$_POST['leave_days']; 
 	$user_role=$_POST['user_role']; 
 	$phonenumber=$_POST['phonenumber']; 
-	$position_student=$_POST['position_student']; 
-	$student_id=$_POST['student_id']; 
+	$position_staff=$_POST['position_staff']; 
+	$staff_id=$_POST['staff_id']; 
 	$status=1;
 
 	 $query = mysqli_query($conn,"select * from tblemployees where EmailId = '$email'")or die(mysqli_error());
@@ -28,11 +28,11 @@
 	</script>
 	<?php
       }else{
-        mysqli_query($conn,"INSERT INTO tblemployees(FirstName,LastName,EmailId,Password,Gender,Dob,Department,Address,Av_leave,role,Phonenumber,Status, location, Student_ID, Position_Student) VALUES('$fname','$lname','$email','$password','$gender','$dob','$department','$address','$leave_days','$user_role','$phonenumber','$status', 'NO-IMAGE-AVAILABLE.jpg','$student_id','$position_student')         
+        mysqli_query($conn,"INSERT INTO tblemployees(FirstName,LastName,EmailId,Password,Gender,Dob,Department,Address,Av_leave,role,Phonenumber,Status, location, Staff_ID, Position_Staff) VALUES('$fname','$lname','$email','$password','$gender','$dob','$department','$address','$leave_days','$user_role','$phonenumber','$status', 'NO-IMAGE-AVAILABLE.jpg','$staff_id','$position_staff')         
 		") or die(mysqli_error()); ?>
-		<script>alert('Student Records Successfully Added');</script>;
+		<script>alert('Staff Records Successfully Added');</script>;
 		<script>
-		window.location = "student.php"; 
+		window.location = "staff.php"; 
 		</script>
 		<?php   }
 }
@@ -70,12 +70,12 @@
 					<div class="row">
 						<div class="col-md-6 col-sm-12">
 							<div class="title">
-								<h4>Student Portal</h4>
+								<h4>Staff Portal</h4>
 							</div>
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Student Module</li>
+									<li class="breadcrumb-item active" aria-current="page">Staff Module</li>
 								</ol>
 							</nav>
 						</div>
@@ -85,7 +85,7 @@
 				<div class="pd-20 card-box mb-30">
 					<div class="clearfix">
 						<div class="pull-left">
-							<h4 class="text-blue h4">Student Form</h4>
+							<h4 class="text-blue h4">Staff Form</h4>
 							<p class="mb-20"></p>
 						</div>
 					</div>
@@ -115,8 +115,14 @@
 								<div class="row">
 									<div class="col-md-6 col-sm-12">
 										<div class="form-group">
-											<label >Student ID :</label>
-											<input name="student_id" type="text" class="form-control" required="true" autocomplete="off">
+											<label >Staff Position :</label>
+											<input name="position_staff" type="text" class="form-control wizard-required" required="true" autocomplete="off">
+										</div>
+									</div>
+									<div class="col-md-6 col-sm-12">
+										<div class="form-group">
+											<label >Staff ID :</label>
+											<input name="staff_id" type="text" class="form-control" required="true" autocomplete="off">
 										</div>
 									</div>
 								</div>
@@ -177,7 +183,7 @@
 								<div class="row">
 									<div class="col-md-4 col-sm-12">
 										<div class="form-group">
-											<label>Student Leave Days :</label>
+											<label>Staff Leave Days :</label>
 											<input name="leave_days" type="number" class="form-control" required="true" autocomplete="off">
 										</div>
 									</div>
@@ -189,7 +195,7 @@
 												<option value="">Select Role</option>
 												<option value="Admin">Admin</option>
 												<option value="HOD">HOD</option>
-												<option value="Student">Student</option>
+												<option value="Staff">Staff</option>
 											</select>
 										</div>
 									</div>
@@ -198,7 +204,7 @@
 										<div class="form-group">
 											<label style="font-size:16px;"><b></b></label>
 											<div class="modal-footer justify-content-center">
-												<button class="btn btn-primary" name="add_student" id="add_student" data-toggle="modal">Add&nbsp;Student</button>
+												<button class="btn btn-primary" name="add_staff" id="add_staff" data-toggle="modal">Add&nbsp;Staff</button>
 											</div>
 										</div>
 									</div>

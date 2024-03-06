@@ -234,7 +234,7 @@
 					<table class="data-table table stripe hover nowrap">
 						<thead>
 							<tr>
-								<th class="table-plus datatable-nosort">STAFF NAME</th>
+								<th class="table-plus datatable-nosort">STUDENT NAME</th>
 								<th>LEAVE TYPE</th>
 								<th>APPLIED DATE</th>
 								<th>STATUS</th>
