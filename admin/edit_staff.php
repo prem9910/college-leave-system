@@ -154,7 +154,7 @@
 											<label>Department :</label>
 											<select name="department" class="custom-select form-control" required="true" autocomplete="off">
 												<?php
-													$query_staff = mysqli_query($conn,"select * from tblemployees join  tbldepartments where emp_id = '$get_id'")or die(mysqli_error());
+													$query_staff = mysqli_query($conn,"select * from tblemployees join tbldepartments where emp_id = '$get_id'")or die(mysqli_error());
 													$row_staff = mysqli_fetch_array($query_staff);
 													
 												 ?>

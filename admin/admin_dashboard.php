@@ -27,7 +27,7 @@
 						<h4 class="font-20 weight-500 mb-10 text-capitalize">
 							Welcome back <div class="weight-600 font-30 text-blue"><?php echo $row['FirstName']. " " .$row['LastName']; ?>,</div>
 						</h4>
-						<p class="font-18 max-width-600">you are in an institution established to serve the wider Christian community in Ghana and Africa.</p>
+						<p class="font-18 max-width-600">You are part of an institution dedicated to serving the educational needs of the NSTI College </p>
 					</div>
 				</div>
 			</div>
@@ -181,7 +181,7 @@
 				<div class="col-lg-4 col-md-6 mb-20">
 					<div class="card-box height-100-p pd-20 min-height-200px">
 						<div class="d-flex justify-content-between">
-							<div class="h5 mb-0">Student</div>
+							<div class="h5 mb-0">Staff</div>
 							<div class="table-actions">
 								<a title="VIEW" href="student.php"><i class="icon-copy ion-disc" data-color="#17a2b8"></i></a>	
 							</div>
@@ -223,7 +223,7 @@
 					<table class="data-table table stripe hover nowrap">
 						<thead>
 							<tr>
-								<th class="table-plus datatable-nosort">STUDENT NAME</th>
+								<th class="table-plus datatable-nosort">STAFF NAME</th>
 								<th>LEAVE TYPE</th>
 								<th>APPLIED DATE</th>
 								<th>HOD STATUS</th>

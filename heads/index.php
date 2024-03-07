@@ -27,7 +27,7 @@
 						<h4 class="font-20 weight-500 mb-10 text-capitalize">
 							Welcome back <div class="weight-600 font-30 text-blue"><?php echo $row['FirstName']. " " .$row['LastName']; ?>,</div>
 						</h4>
-						<p class="font-18 max-width-600">you are in an institution established to serve the wider Christian community in Ghana and Africa.</p>
+						<p class="font-18 max-width-600">You are part of an institution dedicated to serving the educational needs of the NSTI College.</p>
 					</div>
 				</div>
 			</div>
@@ -39,16 +39,16 @@
 					<div class="card-box height-100-p widget-style3">
 
 						<?php
-						$sql = "SELECT emp_id from tblemployees";
+						$sql = "SELECT std_id from tblstudents";
 						$query = $dbh -> prepare($sql);
 						$query->execute();
 						$results=$query->fetchAll(PDO::FETCH_OBJ);
-						$empcount=$query->rowCount();
+						$stdcount=$query->rowCount();
 						?>
 
 						<div class="d-flex flex-wrap">
 							<div class="widget-data">
-								<div class="weight-700 font-24 text-dark"><?php echo($empcount);?></div>
+								<div class="weight-700 font-24 text-dark"><?php echo($stdcount);?></div>
 								<div class="font-14 text-secondary weight-500">Total Students</div>
 							</div>
 							<div class="widget-icon">
@@ -135,7 +135,7 @@
 				<div class="col-lg-4 col-md-6 mb-20">
 					<div class="card-box height-100-p pd-20 min-height-200px">
 						<div class="d-flex justify-content-between pb-10">
-							<div class="h5 mb-0">Department Heads</div>
+							<div class="h5 mb-0">Department Members</div>
 							<div class="table-actions">
 								<a title="VIEW" href="student.php"><i class="icon-copy ion-disc" data-color="#17a2b8"></i></a>	
 							</div>
@@ -143,7 +143,7 @@
 						<div class="user-list">
 							<ul>
 								<?php
-		                         $query = mysqli_query($conn,"select * from tblemployees where role = '$session_role' ORDER BY tblemployees.emp_id desc limit 4") or die(mysqli_error());
+		                         $query = mysqli_query($conn,"select * from tblemployees where role != '$session_role' and department= '$session_depart' ORDER BY tblemployees.emp_id desc limit 4") or die(mysqli_error());
 		                         while ($row = mysqli_fetch_array($query)) {
 		                         $id = $row['emp_id'];
 		                             ?>
@@ -190,9 +190,9 @@
 						<div class="user-list">
 							<ul>
 								<?php
-		                         $query = mysqli_query($conn,"select * from tblemployees where role = 'Student' and Department = '$session_depart' ORDER BY tblemployees.emp_id desc limit 4") or die(mysqli_error());
+		                         $query = mysqli_query($conn,"select * from tblstudents where Department = '$session_depart' ORDER BY tblstudents.std_id desc limit 4") or die(mysqli_error());
 		                         while ($row = mysqli_fetch_array($query)) {
-		                         $id = $row['emp_id'];
+		                         $id = $row['std_id'];
 		                             ?>
 
 								<li class="d-flex align-items-center justify-content-between">

@@ -1,4 +1,4 @@
 Email 						password
-gafa3@gmail.com					bridget    STAFF
-knath@gmail.com				      richard    HOD
-admin@gmial.com					admin123   ADMIN/REGISTRA
+iamprem021@gmail.com				bridget	Admin
+narmadap@gmail.com				narmadap  HOD
+vikas2024@gmail.com				vikas2024 STAFF
