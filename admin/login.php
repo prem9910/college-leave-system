@@ -6,7 +6,7 @@ if(isset($_POST['signin']))
 	$username=$_POST['username'];
 	$password=md5($_POST['password']);
 
-	$sql ="SELECT * FROM tblstudents where EmailId ='$username' AND Password ='$password'";
+	$sql ="SELECT * FROM tblemployees where EmailId ='$username' AND Password ='$password'";
 	$query= mysqli_query($conn, $sql);
 	$count = mysqli_num_rows($query);
 	if($count > 0)
@@ -64,7 +64,7 @@ if(isset($_POST['signin']))
 <head>
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
-	<title>NSTI Leave Manager</title>
+	<title>ACI Leave Manager</title>
 
 	<!-- Site favicon -->
 	<link rel="apple-touch-icon" sizes="180x180" href="vendors/images/apple-touch-icon.png">
@@ -140,7 +140,6 @@ if(isset($_POST['signin']))
 								</div>
 							</div>
 						</form>
-						
 					</div>
 				</div>
 			</div>

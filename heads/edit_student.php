@@ -14,11 +14,10 @@
 	$address=$_POST['address']; 
 	$leave_days=$_POST['leave_days']; 
 	$user_role=$_POST['user_role']; 
-	$phonenumber=$_POST['phonenumber']; 
-	$position_student=$_POST['position_student']; 
+	$phonenumber=$_POST['phonenumber'];
 	$student_id=$_POST['student_id']; 
 
-	$result = mysqli_query($conn,"update tblemployees set FirstName='$fname', LastName='$lname', EmailId='$email', Gender='$gender', Dob='$dob', Department='$department', Address='$address', Av_leave='$leave_days', role='$user_role', Phonenumber='$phonenumber', Position_Student='$position_student', Student_ID='$student_id' where emp_id='$get_id'         
+	$result = mysqli_query($conn,"update tblstudents set FirstName='$fname', LastName='$lname', EmailId='$email', Gender='$gender', Dob='$dob', Department='$department', Address='$address', Av_leave='$leave_days', role='$user_role', Phonenumber='$phonenumber', Student_ID='$student_id' where std_id='$get_id'         
 		"); 		
 	if ($result) {
      	echo "<script>alert('Record Successfully Updated');</script>";
@@ -74,7 +73,7 @@
 						<form method="post" action="">
 							<section>
 								<?php
-									$query = mysqli_query($conn,"select * from tblemployees where emp_id = '$get_id' ")or die(mysqli_error());
+									$query = mysqli_query($conn,"select * from tblstudents where std_id = '$get_id' ")or die(mysqli_error());
 									$row = mysqli_fetch_array($query);
 									?>
 
@@ -99,16 +98,22 @@
 									</div>
 								</div>
 								<div class="row">
-									<div class="col-md-6 col-sm-12">
-										<div class="form-group">
-											<label >Student Position :</label>
-											<input name="position_student" type="text" class="form-control wizard-required" required="true" autocomplete="off" value="<?php echo $row['Position_Student'] ?>">
-										</div>
-									</div>
-									<div class="col-md-6 col-sm-12">
+									<div class="col-md-4 col-sm-12">
 										<div class="form-group">
 											<label >Student ID :</label>
 											<input name="student_id" type="text" class="form-control" required="true" autocomplete="off" value="<?php echo $row['Student_ID'] ?>">
+										</div>
+									</div>
+									<div class="col-md-4 col-sm-12">
+										<div class="form-group">
+											<label>Date Of Birth :</label>
+											<input name="dob" type="text" class="form-control date-picker" required="true" autocomplete="off"value="<?php echo $row['Dob']; ?>">
+										</div>
+									</div>
+									<div class="col-md-4 col-sm-12">
+										<div class="form-group">
+											<label>Address :</label>
+											<input name="address" type="text" class="form-control" required="true" autocomplete="off"value="<?php echo $row['Address']; ?>">
 										</div>
 									</div>
 								</div>
@@ -139,18 +144,6 @@
 								<div class="row">
 									<div class="col-md-4 col-sm-12">
 										<div class="form-group">
-											<label>Date Of Birth :</label>
-											<input name="dob" type="text" class="form-control date-picker" required="true" autocomplete="off"value="<?php echo $row['Dob']; ?>">
-										</div>
-									</div>
-									<div class="col-md-4 col-sm-12">
-										<div class="form-group">
-											<label>Address :</label>
-											<input name="address" type="text" class="form-control" required="true" autocomplete="off"value="<?php echo $row['Address']; ?>">
-										</div>
-									</div>
-									<div class="col-md-4 col-sm-12">
-										<div class="form-group">
 											<label>Department :</label>
 											<select name="department" class="custom-select form-control" required="true" autocomplete="off">
 												<?php
@@ -169,13 +162,10 @@
 											</select>
 										</div>
 									</div>
-								</div>
-
-								<?php
-									$query = mysqli_query($conn,"select * from tblemployees where emp_id = '$get_id' ")or die(mysqli_error());
+									<?php
+									$query = mysqli_query($conn,"select * from tblstudents where std_id = '$get_id' ")or die(mysqli_error());
 									$new_row = mysqli_fetch_array($query);
 									?>
-								<div class="row">
 									<div class="col-md-4 col-sm-12">
 										<div class="form-group">
 											<label>Student Leave Days :</label>
@@ -183,18 +173,21 @@
 										</div>
 									</div>
 									
-									<div class="col-md-4 col-sm-12">
+									<div class="col-md-4 col-sm-12" hidden>
 										<div class="form-group">
 											<label>User Role :</label>
-											<select name="user_role" class="custom-select form-control" required="true" autocomplete="off">
-												<option value="<?php echo $new_row['role']; ?>"><?php echo $new_row['role']; ?></option>
-												<option value="HOD">HOD</option>
-												<option value="Student">Student</option>
+											<select name="user_role" class="custom-select form-control" readonly required="true" autocomplete="off">
+												<option value="<?php echo $new_row['role']; ?>" ><?php echo $new_row['role']; ?></option>
 											</select>
 										</div>
 									</div>
+								</div>
 
-									<div class="col-md-4 col-sm-12">
+								
+								<div class="row justify-content-center">
+									
+
+									<div class="col-md-6 col-sm-12">
 										<div class="form-group">
 											<label style="font-size:16px;"><b></b></label>
 											<div class="modal-footer justify-content-center">

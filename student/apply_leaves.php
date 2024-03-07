@@ -2,7 +2,7 @@
 <head>
     <!-- Basic Page Info -->
     <meta charset="utf-8">
-    <title>ACI Leave System</title>
+    <title>NSTI Leave System</title>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.css">
   
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
@@ -156,7 +156,7 @@
 	  }
 
 	else {
-            $studentQuery= mysqli_query($conn,"select * from tblemployees where emp_id = '$session_id'")or die(mysqli_error());
+            $studentQuery= mysqli_query($conn,"select * from tblstudents where std_id = '$session_id'")or die(mysqli_error());
             //getEmailStudent
             $studentRow = mysqli_fetch_assoc($studentQuery);
             $studentEmailId = $studentRow['EmailId'];
@@ -253,7 +253,7 @@
                             <section>
 
                                 <?php if ($role_id = 'Student'): ?>
-                                <?php $query= mysqli_query($conn,"select * from tblemployees where emp_id = '$session_id'")or die(mysqli_error());
+                                <?php $query= mysqli_query($conn,"select * from tblstudents where std_id = '$session_id'")or die(mysqli_error());
                                     $row = mysqli_fetch_array($query);
                                 ?>
                         
@@ -272,12 +272,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label>Position</label>
-                                            <input name="postion" type="text" class="form-control" required="true" autocomplete="off" readonly value="<?php echo $row['Position_Student']; ?>">
-                                        </div>
-                                    </div>
+                                    
                                     <div class="col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label>Student ID Number </label>
@@ -285,9 +280,7 @@
                                         </div>
                                     </div>
                                     <?php endif ?>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12 col-sm-12">
+                                    <div class="col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label>Leave Type :</label>
                                             <select name="leave_type" id="leave_type" class="custom-select form-control" required="true" autocomplete="off">
@@ -307,6 +300,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                
                                 <div class="row">
                                     <div class="col-md-6 col-sm-12">
                                         <div class="form-group">

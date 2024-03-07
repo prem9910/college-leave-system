@@ -25,11 +25,11 @@
 					</li>
 					<li class="dropdown">
 						<a href="javascript:;" class="dropdown-toggle">
-							<span class="micon dw dw-library"></span><span class="mtext">Staff</span>
+							<span class="micon dw dw-library"></span><span class="mtext">Student</span>
 						</a>
 						<ul class="submenu">
-							<li><a href="add_staff.php">New Staff</a></li>
-							<li><a href="staff.php">Manage Staff</a></li>
+							<li><a href="add_student.php">New Student</a></li>
+							<li><a href="student.php">Manage Student</a></li>
 						</ul>
 					</li>
 					<li class="dropdown">
@@ -51,17 +51,17 @@
 					<li>
 						<div class="sidebar-small-cap">Extra</div>
 					</li>
-					<li>
-						<a href="https://aci.edu.gh/" class="dropdown-toggle no-arrow">
+					<!-- <li>
+						<a href="#" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-edit-2"></span><span class="mtext">Visit Us</span>
 						</a>
 					</li>
 					<li>
-						<a href="https://aci.edu.gh/faculty" class="dropdown-toggle no-arrow">
+						<a href="#" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-paper-plane1"></span>
 							<span class="mtext">Faculty </span>
 						</a>
-					</li>
+					</li> -->
 				</ul>
 			</div>
 		</div>

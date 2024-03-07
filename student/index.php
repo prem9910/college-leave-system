@@ -31,7 +31,7 @@
 					</div>
 					<div class="col-md-8">
 
-						<?php $query= mysqli_query($conn,"select * from tblemployees where emp_id = '$session_id'")or die(mysqli_error());
+						<?php $query= mysqli_query($conn,"select * from tblstudents where std_id = '$session_id'")or die(mysqli_error());
 								$row = mysqli_fetch_array($query);
 						?>
 

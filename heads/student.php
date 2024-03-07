@@ -3,7 +3,7 @@
 <?php
 if (isset($_GET['delete'])) {
 	$delete = $_GET['delete'];
-	$sql = "DELETE FROM tblemployees where emp_id = ".$delete;
+	$sql = "DELETE FROM tblstudents where std_id = ".$delete;
 	$result = mysqli_query($conn, $sql);
 	if ($result) {
 		echo "<script>alert('Student deleted Successfully');</script>";
@@ -35,17 +35,17 @@ if (isset($_GET['delete'])) {
 					<div class="card-box height-100-p widget-style3">
 
 						<?php
-						$sql = "SELECT emp_id from tblemployees";
+						$sql = "SELECT std_id from tblstudents";
 						$query = $dbh -> prepare($sql);
 						$query->execute();
 						$results=$query->fetchAll(PDO::FETCH_OBJ);
-						$empcount=$query->rowCount();
+						$stdcount=$query->rowCount();
 						?>
 
 						<div class="d-flex flex-wrap">
 							<div class="widget-data">
-								<div class="weight-700 font-24 text-dark"><?php echo($empcount);?></div>
-								<div class="font-14 text-secondary weight-500">Total Employees</div>
+								<div class="weight-700 font-24 text-dark"><?php echo($stdcount);?></div>
+								<div class="font-14 text-secondary weight-500">Total Students</div>
 							</div>
 							<div class="widget-icon">
 								<div class="icon" data-color="#00eccf"><i class="icon-copy dw dw-user-2"></i></div>
@@ -53,11 +53,11 @@ if (isset($_GET['delete'])) {
 						</div>
 					</div>
 				</div>
-				<div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+				<div class="col-xl-3 col-lg-3 col-md-6 mb-20" hidden>
 					<div class="card-box height-100-p widget-style3">
 
 						<?php 
-						 $query_reg_student = mysqli_query($conn,"select * from tblemployees where role = 'Student' ")or die(mysqli_error());
+						 $query_reg_student = mysqli_query($conn,"select * from tblstudents where role = 'Student' ")or die(mysqli_error());
 						 $count_reg_student = mysqli_num_rows($query_reg_student);
 						 ?>
 
@@ -114,7 +114,7 @@ if (isset($_GET['delete'])) {
 
 			<div class="card-box mb-30">
 				<div class="pd-20">
-						<h2 class="text-blue h4">ALL EMPLOYEES</h2>
+						<h2 class="text-blue h4">ALL STUDENTS</h2>
 					</div>
 				<div class="pb-20">
 					<table class="data-table table stripe hover nowrap">
@@ -123,7 +123,7 @@ if (isset($_GET['delete'])) {
 								<th class="table-plus">FULL NAME</th>
 								<th>EMAIL</th>
 								<th>PHONE NUMBER</th>
-								<th>POSITION</th>
+								<th>STUDENT ID</th>
 								<th>AVE. LEAVE</th>
 								<th class="datatable-nosort">ACTION</th>
 							</tr>
@@ -132,9 +132,9 @@ if (isset($_GET['delete'])) {
 							<tr>
 
 								 <?php
-		                         $teacher_query = mysqli_query($conn,"select * from tblemployees LEFT JOIN tbldepartments ON tblemployees.Department = tbldepartments.DepartmentShortName where tblemployees.role = 'Student' and tblemployees.Department = '$session_depart' ORDER BY tblemployees.emp_id") or die(mysqli_error());
+		                         $teacher_query = mysqli_query($conn,"select * from tblstudents LEFT JOIN tbldepartments ON tblstudents.Department = tbldepartments.DepartmentShortName where tblstudents.role = 'Student' and tblstudents.Department = '$session_depart' ORDER BY tblstudents.std_id") or die(mysqli_error());
 		                         while ($row = mysqli_fetch_array($teacher_query)) {
-		                         $id = $row['emp_id'];
+		                         $id = $row['std_id'];
 		                             ?>
 
 								<td class="table-plus">
@@ -149,7 +149,7 @@ if (isset($_GET['delete'])) {
 								</td>
 								<td><?php echo $row['EmailId']; ?></td>
 	                            <td><?php echo $row['Phonenumber']; ?></td>
-								<td><?php echo $row['Position_Student']; ?></td>
+								<td><?php echo $row['Student_ID']; ?></td>
 								<td><?php echo $row['Av_leave']; ?></td>
 								<td>
 									<div class="dropdown">
@@ -157,9 +157,9 @@ if (isset($_GET['delete'])) {
 											<i class="dw dw-more"></i>
 										</a>
 										<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-											<a class="dropdown-item" href="chat.php?sender=<?php echo $session_id; ?>&receiver=<?php echo $row['emp_id']; ?>"><i class="micon dw dw-chat3"></i> Chat Student</a>
-											<a class="dropdown-item" href="edit_student.php?edit=<?php echo $row['emp_id'];?>"><i class="dw dw-edit2"></i> Edit</a>
-											<a class="dropdown-item" href="student.php?delete=<?php echo $row['emp_id'] ?>"><i class="dw dw-delete-3"></i> Delete</a>
+											<a class="dropdown-item" href="chat.php?sender=<?php echo $session_id; ?>&receiver=<?php echo $row['std_id']; ?>"><i class="micon dw dw-chat3"></i> Chat Student</a>
+											<a class="dropdown-item" href="edit_student.php?edit=<?php echo $row['std_id'];?>"><i class="dw dw-edit2"></i> Edit</a>
+											<a class="dropdown-item" href="student.php?delete=<?php echo $row['std_id'] ?>"><i class="dw dw-delete-3"></i> Delete</a>
 										</div>
 									</div>
 								</td>

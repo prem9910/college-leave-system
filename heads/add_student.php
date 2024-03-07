@@ -14,13 +14,12 @@
 	$address=$_POST['address']; 
 	$leave_days=$_POST['leave_days']; 
 	$user_role=$_POST['user_role']; 
-	$phonenumber=$_POST['phonenumber'];
-	$position_student=$_POST['position_student']; 
+	$phonenumber=$_POST['phonenumber']; 
 	$student_id=$_POST['student_id']; 
 	// $status=1;
 	$status = "Offline";
 
-	 $query = mysqli_query($conn,"select * from tblemployees where EmailId = '$email'")or die(mysqli_error());
+	 $query = mysqli_query($conn,"select * from tblstudents where EmailId = '$email'")or die(mysqli_error());
 	 $count = mysqli_num_rows($query);
      
      if ($count > 0){ ?>
@@ -29,7 +28,7 @@
 	</script>
 	<?php
       }else{
-        mysqli_query($conn,"INSERT INTO tblemployees(FirstName,LastName,EmailId,Password,Gender,Dob,Department,Address,Av_leave,role,Phonenumber,Status, location, Student_ID, Position_Student) VALUES('$fname','$lname','$email','$password','$gender','$dob','$department','$address','$leave_days','$user_role','$phonenumber','$status', 'NO-IMAGE-AVAILABLE.jpg','$student_id','$position_student')         
+        mysqli_query($conn,"INSERT INTO tblstudents(FirstName,LastName,EmailId,Password,Gender,Dob,Department,Address,Av_leave,role,Phonenumber,Status, location, Student_ID) VALUES('$fname','$lname','$email','$password','$gender','$dob','$department','$address','$leave_days','$user_role','$phonenumber','$status', 'NO-IMAGE-AVAILABLE.jpg','$student_id')         
 		") or die(mysqli_error()); ?>
 		<script>alert('Student Records Successfully  Added');</script>;
 		<script>
@@ -103,16 +102,22 @@
 									</div>
 								</div>
 								<div class="row">
-									<div class="col-md-6 col-sm-12">
-										<div class="form-group">
-											<label >Student Position :</label>
-											<input name="position_student" type="text" class="form-control wizard-required" required="true" autocomplete="off">
-										</div>
-									</div>
-									<div class="col-md-6 col-sm-12">
+									<div class="col-md-4 col-sm-12">
 										<div class="form-group">
 											<label >Student ID :</label>
 											<input name="student_id" type="text" class="form-control" required="true" autocomplete="off">
+										</div>
+									</div>
+									<div class="col-md-4 col-sm-12">
+										<div class="form-group">
+											<label>Date Of Birth :</label>
+											<input name="dob" type="text" class="form-control date-picker" required="true" autocomplete="off">
+										</div>
+									</div>
+									<div class="col-md-4 col-sm-12">
+										<div class="form-group">
+											<label>Address :</label>
+											<input name="address" type="text" class="form-control" required="true" autocomplete="off">
 										</div>
 									</div>
 								</div>
@@ -141,18 +146,8 @@
 									</div>
 								</div>
 								<div class="row">
-									<div class="col-md-4 col-sm-12">
-										<div class="form-group">
-											<label>Date Of Birth :</label>
-											<input name="dob" type="text" class="form-control date-picker" required="true" autocomplete="off">
-										</div>
-									</div>
-									<div class="col-md-4 col-sm-12">
-										<div class="form-group">
-											<label>Address :</label>
-											<input name="address" type="text" class="form-control" required="true" autocomplete="off">
-										</div>
-									</div>
+									
+									
 									<div class="col-md-4 col-sm-12">
 										<div class="form-group">
 											<label>Department :</label>
@@ -168,28 +163,29 @@
 											</select>
 										</div>
 									</div>
-								</div>
-
-								<div class="row">
 									<div class="col-md-4 col-sm-12">
 										<div class="form-group">
 											<label>Student Leave Days :</label>
 											<input name="leave_days" type="number" class="form-control" required="true" autocomplete="off">
 										</div>
 									</div>
+								</div>
+
+								<div class="row justify-content-center">
 									
-									<div class="col-md-4 col-sm-12">
+									
+									<div class="col-md-4 col-sm-12" hidden>
 										<div class="form-group">
 											<label>User Role :</label>
 											<select name="user_role" class="custom-select form-control" required="true" autocomplete="off">
-												<option value="">Select Role</option>
-												<option value="HOD">HOD</option>
-												<option value="Student">Student</option>
+												<!-- <option value="">Select Role</option>
+												<option value="HOD">HOD</option> -->
+												<option value="Student" selected>Student</option>
 											</select>
 										</div>
 									</div>
 
-									<div class="col-md-4 col-sm-12">
+									<div class="col-md-6 col-sm-12">
 										<div class="form-group">
 											<label style="font-size:16px;"><b></b></label>
 											<div class="modal-footer justify-content-center">
