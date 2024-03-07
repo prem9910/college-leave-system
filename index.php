@@ -6,12 +6,21 @@ if(isset($_POST['signin']))
 	$username=$_POST['username'];
 	$password=md5($_POST['password']);
 
-	$sql ="SELECT * FROM tblstudents where EmailId ='$username' AND Password ='$password'";
-	$query= mysqli_query($conn, $sql);
-	$count = mysqli_num_rows($query);
-	if($count > 0)
+	// $sql ="SELECT * FROM tblemployees, tblstudents where EmailId ='$username' AND Password ='$password'";
+	// $query= mysqli_query($conn, $sql);
+	// $count = mysqli_num_rows($query);
+	// Check if the login details exist in the tblemployees table
+	$query1 = "SELECT * FROM tblemployees WHERE EmailId='$username' AND Password='$password'";
+	$result1 = mysqli_query($conn, $query1);
+
+	// Check if the login details exist in the tblstudents table
+	$query2 = "SELECT * FROM tblstudents WHERE EmailId='$username' AND Password='$password'";
+	$result2 = mysqli_query($conn, $query2);
+
+
+	if(mysqli_num_rows($result1) > 0)
 	{
-		while ($row = mysqli_fetch_assoc($query)) {
+		while ($row = mysqli_fetch_assoc($result1) ) {
 		    if ($row['role'] == 'Admin') {
 		    	$_SESSION['alogin']=$row['emp_id'];
 		    	$_SESSION['arole']=$row['role'];
@@ -22,19 +31,7 @@ if(isset($_POST['signin']))
                 $result = mysqli_query($conn, "UPDATE tblemployees SET status='Online' WHERE emp_id='$emp_id'");
 
 			 	echo "<script type='text/javascript'> document.location = 'admin/admin_dashboard.php'; </script>";
-		    }
-		    elseif ($row['role'] == 'Student') {
-		    	$_SESSION['alogin']=$row['std_id'];
-		    	$_SESSION['arole']=$row['role'];
-		    	$_SESSION['adepart']=$row['Department'];
-				
-				//login active status
-                $emp_id =  $_SESSION['alogin'];
-                $result = mysqli_query($conn, "UPDATE tblstudents SET status='Online' WHERE std_id='$std_id'");
-
-			 	echo "<script type='text/javascript'> document.location = 'student/index.php'; </script>";
-		    }
-		    else {
+		    }else {
 		    	$_SESSION['alogin']=$row['emp_id'];
 		    	$_SESSION['arole']=$row['role'];
 		    	$_SESSION['adepart']=$row['Department'];
@@ -48,6 +45,23 @@ if(isset($_POST['signin']))
 
 		}
 
+	} elseif (mysqli_num_rows($result2) > 0){
+		while ($row = mysqli_fetch_assoc($result2) ) {
+			// elseif ($row['role'] == 'Student') {
+				$_SESSION['alogin']=$row['std_id'];
+				$_SESSION['arole']=$row['role'];
+				$_SESSION['adepart']=$row['Department'];
+				
+				//login active status
+				$std_id =  $_SESSION['alogin'];
+				$result = mysqli_query($conn, "UPDATE tblstudents SET status='Online' WHERE std_id='$std_id'");
+	
+				 echo "<script type='text/javascript'> document.location = 'student/index.php'; </script>";
+
+
+		}
+
+		
 	} 
 	else{
 	  echo "<script>alert('Invalid Details');</script>";

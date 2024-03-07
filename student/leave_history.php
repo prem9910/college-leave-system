@@ -3,7 +3,7 @@
 <?php
 if (isset($_GET['delete'])) {
 	$delete = $_GET['delete'];
-	$sql = "DELETE FROM tblemployees where emp_id = ".$delete;
+	$sql = "DELETE FROM tblstudents where std_id = ".$delete;
 	$result = mysqli_query($conn, $sql);
 	if ($result) {
 		echo "<script>alert('Student deleted Successfully');</script>";
@@ -15,18 +15,7 @@ if (isset($_GET['delete'])) {
 ?>
 
 <body>
-	<div class="pre-loader">
-		<div class="pre-loader-box">
-			<div class="loader-logo"><img src="../vendors/images/deskapp-logo-svg.png" alt=""></div>
-			<div class='loader-progress' id="progress_div">
-				<div class='bar' id='bar1'></div>
-			</div>
-			<div class='percent' id='percent1'>0%</div>
-			<div class="loading-text">
-				Loading...
-			</div>
-		</div>
-	</div>
+	<?php include('includes/pre-loader.php')?>
 
 	<?php include('includes/navbar.php')?>
 
@@ -46,16 +35,16 @@ if (isset($_GET['delete'])) {
 					<div class="card-box height-100-p widget-style3">
 
 						<?php
-						$sql = "SELECT id from tblleave";
+						$sql = "SELECT id from tblleavestd where stdid = '$session_id' ";
 						$query = $dbh -> prepare($sql);
 						$query->execute();
 						$results=$query->fetchAll(PDO::FETCH_OBJ);
-						$empcount=$query->rowCount();
+						$stdcount=$query->rowCount();
 						?>
 
 						<div class="d-flex flex-wrap">
 							<div class="widget-data">
-								<div class="weight-700 font-24 text-dark"><?php echo($empcount);?></div>
+								<div class="weight-700 font-24 text-dark"><?php echo($stdcount);?></div>
 								<div class="font-14 text-secondary weight-500">All Applied Leave</div>
 							</div>
 							<div class="widget-icon">
@@ -69,7 +58,7 @@ if (isset($_GET['delete'])) {
 
 						<?php 
 						 $status=1;
-						 $query = mysqli_query($conn,"select * from tblleave where empid = '$session_id' AND HodRemarks = '$status'")or die(mysqli_error());
+						 $query = mysqli_query($conn,"select * from tblleavestd where stdid = '$session_id' AND HodRemarks = '$status'")or die(mysqli_error());
 						 $count_reg_student = mysqli_num_rows($query);
 						 ?>
 
@@ -89,7 +78,7 @@ if (isset($_GET['delete'])) {
 
 						<?php 
 						 $status=0;
-						 $query_pend = mysqli_query($conn,"select * from tblleave where empid = '$session_id' AND HodRemarks = '$status'")or die(mysqli_error());
+						 $query_pend = mysqli_query($conn,"select * from tblleavestd where stdid = '$session_id' AND HodRemarks = '$status'")or die(mysqli_error());
 						 $count_pending = mysqli_num_rows($query_pend);
 						 ?>
 
@@ -109,7 +98,7 @@ if (isset($_GET['delete'])) {
 
 						<?php 
 						 $status=2;
-						 $query_reject = mysqli_query($conn,"select * from tblleave where empid = '$session_id' AND HodRemarks = '$status'")or die(mysqli_error());
+						 $query_reject = mysqli_query($conn,"select * from tblleavestd where stdid = '$session_id' AND HodRemarks = '$status'")or die(mysqli_error());
 						 $count_reject = mysqli_num_rows($query_reject);
 						 ?>
 
@@ -147,7 +136,7 @@ if (isset($_GET['delete'])) {
 							<tr>
 								
 								 <?php 
-                                    $sql = "SELECT * from tblleave where empid = '$session_id'";
+                                    $sql = "SELECT * from tblleavestd where stdid = '$session_id'";
                                     $query = $dbh -> prepare($sql);
                                     $query->execute();
                                     $results=$query->fetchAll(PDO::FETCH_OBJ);

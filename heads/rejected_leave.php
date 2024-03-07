@@ -50,7 +50,7 @@
 
 								<?php 
 								$status=2;
-								$sql = "SELECT tblleave.id as lid,tblemployees.FirstName,tblemployees.LastName,tblemployees.emp_id,tblemployees.Gender,tblemployees.Phonenumber,tblemployees.EmailId,tblemployees.Av_leave,tblemployees.Position_Student,tblemployees.Student_ID,tblleave.LeaveType,tblleave.ToDate,tblleave.FromDate,tblleave.PostingDate,tblleave.RequestedDays,tblleave.DaysOutstand,tblleave.Sign,tblleave.WorkCovered,tblleave.HodRemarks,tblleave.RegRemarks,tblleave.HodSign,tblleave.RegSign,tblleave.HodDate,tblleave.RegDate,tblleave.num_days from tblleave join tblemployees on tblleave.empid=tblemployees.emp_id where tblleave.HodRemarks= '$status' and tblemployees.role = 'Student' and tblemployees.Department = '$session_depart' order by lid desc";
+								$sql = "SELECT tblleavestd.id as lid,tblstudents.FirstName,tblstudents.LastName,tblstudents.std_id,tblstudents.Gender,tblstudents.Phonenumber,tblstudents.EmailId,tblstudents.Av_leave,tblstudents.Position_Student,tblstudents.Student_ID,tblleavestd.LeaveType,tblleavestd.ToDate,tblleavestd.FromDate,tblleavestd.PostingDate,tblleavestd.RequestedDays,tblleavestd.DaysOutstand,tblleavestd.Sign,tblleavestd.WorkCovered,tblleavestd.HodRemarks,tblleavestd.RegRemarks,tblleavestd.HodSign,tblleavestd.RegSign,tblleavestd.HodDate,tblleavestd.RegDate,tblleavestd.num_days from tblleavestd join tblstudents on tblleavestd.stdid=tblstudents.std_id where tblleavestd.HodRemarks= '$status' and tblstudents.role = 'Student' and tblstudents.Department = '$session_depart' order by lid desc";
 									$query = mysqli_query($conn, $sql) or die(mysqli_error());
 									while ($row = mysqli_fetch_array($query)) {
 								 ?>  

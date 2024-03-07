@@ -32,18 +32,7 @@
 	</style>
 
 <body>
-	<div class="pre-loader">
-		<div class="pre-loader-box">
-			<div class="loader-logo"><img src="../vendors/images/deskapp-logo-svg.png" alt=""></div>
-			<div class='loader-progress' id="progress_div">
-				<div class='bar' id='bar1'></div>
-			</div>
-			<div class='percent' id='percent1'>0%</div>
-			<div class="loading-text">
-				Loading...
-			</div>
-		</div>
-	</div>
+	<?php include('includes/pre-loader.php')?>
 
 	<?php include('includes/navbar.php')?>
 
@@ -88,7 +77,7 @@
 						else {
 						
 						$lid=intval($_GET['edit']);
-						$sql = "SELECT tblleave.id as lid,tblemployees.FirstName,tblemployees.LastName,tblemployees.emp_id,tblemployees.Gender,tblemployees.Phonenumber,tblemployees.EmailId,tblemployees.Av_leave,tblemployees.Position_Student,tblemployees.Student_ID,tblleave.LeaveType,tblleave.ToDate,tblleave.FromDate,tblleave.RequestedDays,tblleave.PostingDate,tblleave.DaysOutstand,tblleave.Sign,tblleave.WorkCovered,tblleave.HodRemarks,tblleave.RegRemarks,tblleave.HodSign,tblleave.RegSign,tblleave.HodDate,tblleave.RegDate,tblleave.num_days from tblleave join tblemployees on tblleave.empid=tblemployees.emp_id where tblleave.id=:lid";
+						$sql = "SELECT tblleavestd.id as lid,tblstudents.FirstName,tblstudents.LastName,tblstudents.std_id,tblstudents.Gender,tblstudents.Phonenumber,tblstudents.EmailId,tblstudents.Av_leave,tblstudents.Student_ID,tblleavestd.LeaveType,tblleavestd.ToDate,tblleavestd.FromDate,tblleavestd.RequestedDays,tblleavestd.PostingDate,tblleavestd.DaysOutstand,tblleavestd.Sign,tblleavestd.WorkCovered,tblleavestd.HodRemarks,tblleavestd.RegRemarks,tblleavestd.HodSign,tblleavestd.RegSign,tblleavestd.HodDate,tblleavestd.RegDate,tblleavestd.num_days from tblleavestd join tblstudents on tblleavestd.stdid=tblstudents.std_id where tblleavestd.id=:lid";
 						$query = $dbh -> prepare($sql);
 						$query->bindParam(':lid',$lid,PDO::PARAM_STR);
 						$query->execute();
@@ -107,12 +96,12 @@
 									<input type="text" class="selectpicker form-control" data-style="btn-outline-primary" readonly value="<?php echo htmlentities($result->FirstName." ".$result->LastName);?>">
 								</div>
 							</div>
-							<div class="col-md-4 col-sm-12">
+							<!-- <div class="col-md-4 col-sm-12">
 								<div class="form-group">
 									<label style="font-size:16px;"><b>Student Position</b></label>
 									<input type="text" class="selectpicker form-control" data-style="btn-outline-info" readonly value="<?php echo htmlentities($result->Position_Student);?>">
 								</div>
-							</div>
+							</div> -->
 							<div class="col-md-4 col-sm-12">
 								<div class="form-group">
 									<label style="font-size:16px;"><b>Student ID</b></label>
@@ -194,7 +183,7 @@
 								<div class="form-group">
 									<label style="font-size:16px;"><b>Student Signature</b></label>
 									<div class="avatar mr-2 flex-shrink-0">
-										<img src="<?php echo '../signature/'.($result->Sign);?>" width="60" height="40" alt="">
+										<img src="<?php echo '../signature/'.($result->Sign);?>" width="120" height="60" alt="">
 									</div>
 								</div>
 							</div>

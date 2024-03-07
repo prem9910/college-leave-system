@@ -49,18 +49,7 @@ if (isset($_POST["update_image"])) {
 ?>
 
 <body>
-	<div class="pre-loader">
-		<div class="pre-loader-box">
-			<div class="loader-logo"><img src="../vendors/images/deskapp-logo-svg.png" alt=""></div>
-			<div class='loader-progress' id="progress_div">
-				<div class='bar' id='bar1'></div>
-			</div>
-			<div class='percent' id='percent1'>0%</div>
-			<div class="loading-text">
-				Loading...
-			</div>
-		</div>
-	</div>
+	<?php include('includes/pre-loader.php')?>
 
 	<?php include('includes/navbar.php')?>
 
@@ -94,7 +83,7 @@ if (isset($_POST["update_image"])) {
 					<div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-30">
 						<div class="pd-20 card-box height-100-p">
 
-							<?php $query= mysqli_query($conn,"select * from tblemployees LEFT JOIN tbldepartments ON tblemployees.Department = tbldepartments.DepartmentShortName where emp_id = '$session_id'")or die(mysqli_error());
+							<?php $query= mysqli_query($conn,"select * from tblstudents LEFT JOIN tbldepartments ON tblstudents.Department = tbldepartments.DepartmentShortName where std_id = '$session_id'")or die(mysqli_error());
 								$row = mysqli_fetch_array($query);
 							?>
 
@@ -136,8 +125,8 @@ if (isset($_POST["update_image"])) {
 										<?php echo $row['Phonenumber']; ?>
 									</li>
 									<li>
-										<span>Position:</span>
-										<?php echo $row['Position_Student']; ?>
+										<span>Student ID:</span>
+										<?php echo $row['Student_ID']; ?>
 									</li>
 									<li>
 										<span>Address:</span>
@@ -164,7 +153,7 @@ if (isset($_POST["update_image"])) {
 										<div class="tab-pane fade show active" id="timeline" role="tabpanel">
 											<div class="pd-20">
 												<div class="profile-timeline">
-													<?php $query= mysqli_query($conn,"SELECT * from tblleave where empid = '$session_id'")or die(mysqli_error());
+													<?php $query= mysqli_query($conn,"SELECT * from tblleavestd where stdid = '$session_id'")or die(mysqli_error());
 																while ($row = mysqli_fetch_array($query)) {
 		                        								$id = $row['id'];
 															?>
@@ -209,7 +198,7 @@ if (isset($_POST["update_image"])) {
 														<div class="col-md-12"><h4 class="text-blue h5 mb-20">Edit Your Personal Setting</h4></div>
 
 														<?php
-														$query = mysqli_query($conn,"select * from tblemployees where emp_id = '$session_id' ")or die(mysqli_error());
+														$query = mysqli_query($conn,"select * from tblstudents where std_id = '$session_id' ")or die(mysqli_error());
 														$row = mysqli_fetch_array($query);
 														?>
 														<div class="weight-500 col-md-6">
@@ -251,6 +240,13 @@ if (isset($_POST["update_image"])) {
 																	<option value="female">Female</option>
 																</select>
 															</div>
+															<div class="form-group" hidden>
+																<label>Role</label>
+																<select name="role" class="custom-select form-control" required="true" autocomplete="off">
+																<option value="<?php echo $row['role']; ?>"><?php echo $row['role']; ?></option>
+																	
+																</select>
+															</div>
 														</div>
 														<div class="weight-500 col-md-6">
 															
@@ -264,7 +260,7 @@ if (isset($_POST["update_image"])) {
 																<label>Department</label>
 																<select name="department" class="custom-select form-control" required="true" autocomplete="off">
 																	<?php
-																		$query_student = mysqli_query($conn,"select * from tblemployees join  tbldepartments where emp_id = '$session_id'")or die(mysqli_error());
+																		$query_student = mysqli_query($conn,"select * from tblstudents join  tbldepartments where std_id = '$session_id'")or die(mysqli_error());
 																		$row_student = mysqli_fetch_array($query_student);
 																		
 																	 ?>
@@ -281,7 +277,7 @@ if (isset($_POST["update_image"])) {
 														</div>
 														<div class="weight-500 col-md-6">
 															<?php
-																$query = mysqli_query($conn,"select * from tblemployees where emp_id = '$session_id' ")or die(mysqli_error());
+																$query = mysqli_query($conn,"select * from tblstudents where std_id = '$session_id' ")or die(mysqli_error());
 																$row = mysqli_fetch_array($query);
 															?>
 															<div class="form-group">

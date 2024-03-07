@@ -10,7 +10,7 @@
 	$did=intval($_GET['leaveid']);  
 	date_default_timezone_set('Asia/Kolkata');
 	$admremarkdate=date('Y-m-d G:i:s ', strtotime("now"));
-	$sql="update tblleave set IsRead=:isread where id=:did";
+	$sql="update tblleavestd set IsRead=:isread where id=:did";
 	$query = $dbh->prepare($sql);
 	$query->bindParam(':isread',$isread,PDO::PARAM_STR);
 	$query->bindParam(':did',$did,PDO::PARAM_STR);
@@ -42,7 +42,7 @@
 		$admremarkdate=date('Y-m-d ', strtotime("now"));
 
 		if ($status === '2') {
-			$result = mysqli_query($conn,"update tblleave, tblemployees set tblleave.HodRemarks='$status',tblleave.HodDate='$admremarkdate' where tblleave.empid = tblemployees.emp_id AND tblleave.id='$did'");
+			$result = mysqli_query($conn,"update tblleavestd, tblstudents set tblleavestd.HodRemarks='$status',tblleavestd.HodDate='$admremarkdate' where tblleavestd.stdid = tblemployees.std_id AND tblleavestd.id='$did'");
 
 			if ($result) {
 				if (filter_var($hodEmail, FILTER_VALIDATE_EMAIL)){
@@ -60,7 +60,7 @@
 			} 
 		}
 		elseif ($status === '1') {
-				$result = mysqli_query($conn,"update tblleave, tblemployees set tblleave.HodRemarks='$status',tblleave.HodSign='$signature',tblleave.HodDate='$admremarkdate' where tblleave.empid = tblemployees.emp_id AND tblleave.id='$did'");
+				$result = mysqli_query($conn,"update tblleavestd, tblstudents set tblleavestd.HodRemarks='$status',tblleavestd.HodSign='$signature',tblleavestd.HodDate='$admremarkdate' where tblleavestd.stdid = tblstudents.std_id AND tblleavestd.id='$did'");
 
 				if ($result) {
 					if (filter_var($hodEmail, FILTER_VALIDATE_EMAIL)){
@@ -155,11 +155,11 @@
 							</nav>
 						</div>
 						<div class="col-md-6 col-sm-12 text-right">
-							<div class="dropdown show">
+							<!-- <div class="dropdown show">
 								<a class="btn btn-primary" href="report_pdf.php?leave_id=<?php echo $_GET['leaveid'] ?>">
 									Generate Report
 								</a>
-							</div>
+							</div> -->
 						</div>
 					</div>
 				</div>
@@ -180,7 +180,7 @@
 						else {
 						
 						$lid=intval($_GET['leaveid']);
-						$sql = "SELECT tblleave.id as lid,tblemployees.FirstName,tblemployees.LastName,tblemployees.emp_id,tblemployees.Gender,tblemployees.Phonenumber,tblemployees.EmailId,tblemployees.Av_leave,tblemployees.Position_Student,tblemployees.Student_ID,tblleave.LeaveType,tblleave.ToDate,tblleave.FromDate,tblleave.PostingDate,tblleave.RequestedDays,tblleave.DaysOutstand,tblleave.Sign,tblleave.WorkCovered,tblleave.HodRemarks,tblleave.RegRemarks,tblleave.HodSign,tblleave.RegSign,tblleave.HodDate,tblleave.RegDate,tblleave.num_days from tblleave join tblemployees on tblleave.empid=tblemployees.emp_id where tblleave.id=:lid";
+						$sql = "SELECT tblleavestd.id as lid,tblstudents.FirstName,tblstudents.LastName,tblstudents.std_id,tblstudents.Gender,tblstudents.Phonenumber,tblstudents.EmailId,tblstudents.Av_leave,tblstudents.Position_Student,tblstudents.Student_ID,tblleavestd.LeaveType,tblleavestd.ToDate,tblleavestd.FromDate,tblleavestd.PostingDate,tblleavestd.RequestedDays,tblleavestd.DaysOutstand,tblleavestd.Sign,tblleavestd.WorkCovered,tblleavestd.HodRemarks,tblleavestd.RegRemarks,tblleavestd.HodSign,tblleavestd.RegSign,tblleavestd.HodDate,tblleavestd.RegDate,tblleavestd.num_days from tblleavestd join tblstudents on tblleavestd.stdid=tblstudents.std_id where tblleavestd.id=:lid";
 						$query = $dbh -> prepare($sql);
 						$query->bindParam(':lid',$lid,PDO::PARAM_STR);
 						$query->execute();

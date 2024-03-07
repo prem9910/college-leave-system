@@ -74,7 +74,7 @@
 						<form method="post" action="">
 							<section>
 								<?php
-									$query = mysqli_query($conn,"select * from tblemployees where emp_id = '$get_id' ")or die(mysqli_error());
+									$query = mysqli_query($conn,"select * from tblstudents where std_id = '$get_id' ")or die(mysqli_error());
 									$row = mysqli_fetch_array($query);
 									?>
 
@@ -99,16 +99,23 @@
 									</div>
 								</div>
 								<div class="row">
-									<div class="col-md-6 col-sm-12">
-										<div class="form-group">
-											<label >Student Position :</label>
-											<input name="position_student" type="text" class="form-control wizard-required" required="true" autocomplete="off" value="<?php echo $row['Position_Student'] ?>">
-										</div>
-									</div>
-									<div class="col-md-6 col-sm-12">
+									
+									<div class="col-md-4 col-sm-12">
 										<div class="form-group">
 											<label >Student ID :</label>
 											<input name="student_id" type="text" class="form-control" required="true" autocomplete="off" value="<?php echo $row['Student_ID'] ?>">
+										</div>
+									</div>
+									<div class="col-md-4 col-sm-12">
+										<div class="form-group">
+											<label>Date Of Birth :</label>
+											<input name="dob" type="text" class="form-control date-picker" required="true" autocomplete="off"value="<?php echo $row['Dob']; ?>">
+										</div>
+									</div>
+									<div class="col-md-4 col-sm-12">
+										<div class="form-group">
+											<label>Address :</label>
+											<input name="address" type="text" class="form-control" required="true" autocomplete="off"value="<?php echo $row['Address']; ?>">
 										</div>
 									</div>
 								</div>
@@ -137,18 +144,8 @@
 									</div>
 								</div>
 								<div class="row">
-									<div class="col-md-4 col-sm-12">
-										<div class="form-group">
-											<label>Date Of Birth :</label>
-											<input name="dob" type="text" class="form-control date-picker" required="true" autocomplete="off"value="<?php echo $row['Dob']; ?>">
-										</div>
-									</div>
-									<div class="col-md-4 col-sm-12">
-										<div class="form-group">
-											<label>Address :</label>
-											<input name="address" type="text" class="form-control" required="true" autocomplete="off"value="<?php echo $row['Address']; ?>">
-										</div>
-									</div>
+									
+									
 									<div class="col-md-4 col-sm-12">
 										<div class="form-group">
 											<label>Department :</label>
@@ -169,20 +166,16 @@
 											</select>
 										</div>
 									</div>
-								</div>
-
-								<?php
+									<?php
 									$query = mysqli_query($conn,"select * from tblemployees where emp_id = '$get_id' ")or die(mysqli_error());
 									$new_row = mysqli_fetch_array($query);
 									?>
-								<div class="row">
 									<div class="col-md-4 col-sm-12">
 										<div class="form-group">
 											<label>Student Leave Days :</label>
 											<input name="leave_days" type="text" class="form-control" required="true" autocomplete="off"value="<?php echo $new_row['Av_leave']; ?>">
 										</div>
 									</div>
-									
 									<div class="col-md-4 col-sm-12">
 										<div class="form-group">
 											<label>User Role :</label>
@@ -195,7 +188,11 @@
 										</div>
 									</div>
 
-									<div class="col-md-4 col-sm-12">
+								</div>
+
+								
+								<div class="row justify-content-center">
+									<div class="col-md-5 col-sm-12">
 										<div class="form-group">
 											<label style="font-size:16px;"><b></b></label>
 											<div class="modal-footer justify-content-center">

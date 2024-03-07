@@ -101,25 +101,25 @@
 
 	if(isset($_POST['apply']))
 	{
-	$empid=$session_id;
-	$leave_type=$_POST['leave_type'];
-	$fromdate=date('d-m-Y', strtotime($_POST['date_from']));
-	$todate=date('d-m-Y', strtotime($_POST['date_to']));
-	$requested_days=$_POST['requested_days'];  
-	$hod_status=0;
-	$reg_status=0;
-	$isread=0;
-	$leave_days=$_POST['leave_days'];
-	$work_cover=$_POST['work_cover'];
-	$datePosting = date("Y-m-d");
+        $stdid=$session_id;
+        $leave_type=$_POST['leave_type'];
+        $fromdate=date('d-m-Y', strtotime($_POST['date_from']));
+        $todate=date('d-m-Y', strtotime($_POST['date_to']));
+        $requested_days=$_POST['requested_days'];  
+        $hod_status=0;
+        $reg_status=0;
+        $isread=0;
+        $leave_days=$_POST['leave_days'];
+        $work_cover=$_POST['work_cover'];
+        $datePosting = date("Y-m-d");
 
-	$DF = date_create($_POST['date_from']);
-	$DT = date_create($_POST['date_to']);
+        $DF = date_create($_POST['date_from']);
+        $DT = date_create($_POST['date_to']);
 
-	$diff =  date_diff($DF , $DT );
-	$num_days = (1 + $diff->format("%a"));
+        $diff =  date_diff($DF , $DT );
+        $num_days = (1 + $diff->format("%a"));
 
-	$query= mysqli_query($conn,"select * from tblemployees where emp_id = '$session_id'")or die(mysqli_error());
+        $query= mysqli_query($conn,"select * from tblstudents where std_id = '$session_id'")or die(mysqli_error());
         $row = mysqli_fetch_assoc($query);
 
         $firstname = $row['FirstName'];
@@ -175,12 +175,12 @@
             if (filter_var($studentEmailId, FILTER_VALIDATE_EMAIL)) {
                 
                 if (filter_var($hEmailId, FILTER_VALIDATE_EMAIL)) {
-                    $sql="INSERT INTO tblleave(LeaveType,ToDate,FromDate,RequestedDays,DaysOutstand,Sign,WorkCovered,HodRemarks,RegRemarks,IsRead,empid,num_days,PostingDate)	VALUES('$leave_type','$todate','$fromdate', '$requested_days','$leave_days','$signature','$work_cover','$hod_status','$reg_status','$isread','$empid', '$requested_days', '$datePosting')";
+                    $sql="INSERT INTO tblleavestd(LeaveType,ToDate,FromDate,RequestedDays,DaysOutstand,Sign,HodRemarks,RegRemarks,IsRead,stdid,num_days,PostingDate)	VALUES('$leave_type','$todate','$fromdate', '$requested_days','$leave_days','$signature','$hod_status','$reg_status','$isread','$stdid', '$requested_days', '$datePosting')";
                     $lastInsertId = mysqli_query($conn, $sql) or die(mysqli_error());
                     if($lastInsertId)
                     {
                         //echo "<script>alert('Number of Days: ".$requested_days."');</script>";
-                        send_mail($fullname,$fromdate,$hEmailId,$todate, $leave_type, $hodFullname);
+                        // send_mail($fullname,$fromdate,$hEmailId,$todate, $leave_type, $hodFullname);
                     }
                     else 
                     {
@@ -201,18 +201,7 @@
 ?>
 
 <body>
-    <div class="pre-loader">
-        <div class="pre-loader-box">
-            <div class="loader-logo"><img src="../vendors/images/deskapp-logo-svg.png" alt=""></div>
-            <div class='loader-progress' id="progress_div">
-                <div class='bar' id='bar1'></div>
-            </div>
-            <div class='percent' id='percent1'>0%</div>
-            <div class="loading-text">
-                Loading...
-            </div>
-        </div>
-    </div>
+    <?php include('includes/pre-loader.php')?>
     
     <?php include('includes/navbar.php')?>
 
@@ -285,7 +274,7 @@
                                             <label>Leave Type :</label>
                                             <select name="leave_type" id="leave_type" class="custom-select form-control" required="true" autocomplete="off">
                                             <option value="">Select leave type...</option>
-                                            <?php $sql = "SELECT  LeaveType from tblleavetype";
+                                            <?php $sql = "SELECT LeaveType from tblleavetype";
                                             $query = $dbh -> prepare($sql);
                                             $query->execute();
                                             $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -345,12 +334,12 @@
                                 </div>
                                 
                                 <div class="row">
-                                    <div class="col-md-4 col-sm-12">
+                                    <!-- <div class="col-md-4 col-sm-12">
                                         <div class="form-group">
                                             <label>Work to be covered by </label>
                                             <input id="work_cover" name="work_cover" type="text" class="form-control" required="true" autocomplete="off" value="">
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="col-md-4 col-sm-12">
                                         <div class="form-group">
                                             <label>Signature </label>
