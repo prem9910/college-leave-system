@@ -3,9 +3,9 @@
 define('DB_HOST','localhost');
 define('DB_USER','root');
 define('DB_PASS','');
-define('DB_NAME','aci_leave');
+define('DB_NAME','nsti_leave');
 
-$conn = mysqli_connect('localhost','root','','aci_leave') or die(mysqli_error());
+$conn = mysqli_connect('localhost','root','','nsti_leave') or die(mysqli_error());
 
 // Establish database connection.
 try

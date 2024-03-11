@@ -2,3 +2,4 @@ Email 						password
 iamprem021@gmail.com				bridget	Admin
 narmadap@gmail.com				narmadap  HOD
 vikas2024@gmail.com				vikas2024 STAFF
+rohit2024@gmail.com				rohit2024 Student
