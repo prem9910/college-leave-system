@@ -14,7 +14,7 @@ The NSTI Leave System is a web-based application developed to streamline the lea
 
 ## Installation
 
-1. Clone the repository: git clone [repository URL]
+1. Clone the repository: git clone [[repository URL](https://github.com/prem9910/college-leave-system)]
 2. Import the database schema: mysql -u [username] -p [nsti_leave] < database/nsti_leave.sql
 3. Configure the database connection in config.php file.
 4. Start the local server or deploy the project to your web server.
