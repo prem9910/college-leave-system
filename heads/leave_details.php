@@ -155,11 +155,11 @@
 							</nav>
 						</div>
 						<div class="col-md-6 col-sm-12 text-right">
-							<!-- <div class="dropdown show">
+							<div class="dropdown show">
 								<a class="btn btn-primary" href="report_pdf.php?leave_id=<?php echo $_GET['leaveid'] ?>">
 									Generate Report
 								</a>
-							</div> -->
+							</div>
 						</div>
 					</div>
 				</div>
@@ -230,25 +230,7 @@
 								</div>
 							</div>
 
-							<!-- <div class="col-md-4 col-sm-12">
-								<div class="form-group">
-									<label style="font-size:16px;"><b>Approval from previous year </b></label>
-									<input type="text" class="selectpicker form-control" data-style="btn-outline-info" readonly value="<?php echo htmlentities($result->PreviouDays);?>">
-								</div>
-							</div>
-							<div class="col-md-4 col-sm-12">
-								<div class="form-group">
-									<label style="font-size:16px;"><b>Leave Entitlement</b></label>
-									<input type="text" class="selectpicker form-control" data-style="btn-outline-info" readonly value="<?php echo htmlentities($result->LeaveEntitled);?>">
-								</div>
-							</div>
-							<div class="col-md-4">
-								<div class="form-group">
-									<label style="font-size:16px;"><b>Cumulative Leave Entitlement</b></label>
-									<input type="text" class="selectpicker form-control" data-style="btn-outline-info" readonly value="From <?php echo htmlentities($result->CumulativeLeave);?>">
-								</div>
-							</div> -->
-
+							
 							<div class="col-md-4 col-sm-12">
 								<div class="form-group">
 									<label style="font-size:16px;"><b>Requested Number of Days</b></label>

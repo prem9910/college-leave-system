@@ -128,7 +128,6 @@ if (isset($_GET['delete'])) {
 								<th>DATE TO</th>
 								<th>NO. OF DAYS</th>
 								<th>HOD STATUS</th>
-								<th>REG. STATUS</th>
 								<th class="datatable-nosort">ACTION</th>
 							</tr>
 						</thead>
@@ -161,17 +160,7 @@ if (isset($_GET['delete'])) {
 	                                       <?php } ?>
 
                                     </td>
-                                    <td><?php $stats=$result->RegRemarks;
-                                       if($stats==1){
-                                        ?>
-                                           <span style="color: green">Approved</span>
-                                            <?php } if($stats==2)  { ?>
-                                           <span style="color: red">Not Approved</span>
-                                            <?php } if($stats==0)  { ?>
-	                                       <span style="color: blue">Pending</span>
-	                                       <?php } ?>
-
-                                    </td>
+                                    
 								   <td>
 									  <div class="table-actions">
 										<a title="VIEW" href="view_leaves.php?edit=<?php echo htmlentities($result->id);?>" data-color="#265ed7"><i class="icon-copy dw dw-eye"></i></a>
