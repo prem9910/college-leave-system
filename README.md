@@ -2,6 +2,8 @@
 
 The NSTI Leave System is a web-based application developed to streamline the leave management process for staff and students of the National Skill Training Institute (NSTI). 
 
+![loadingscreen](image.png)
+
 ## Features
 
 - Separate modules for admin, staff, and students
@@ -29,9 +31,9 @@ The NSTI Leave System is a web-based application developed to streamline the lea
 - Advanced reporting and analytics features
 - Mobile application for leave management on-the-go
 
-## Contributors
+<!-- ## Contributors
 
-- [Your Name](https://github.com/your-username)
+- [Your Name](https://github.com/your-username) -->
 
 ## License
 
